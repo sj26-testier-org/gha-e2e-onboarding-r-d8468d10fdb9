@@ -48,4 +48,5 @@ if (observed.event === 'merge_group') {
 }
 const evidence = JSON.stringify(observed);
 fs.appendFileSync(process.env.GITHUB_OUTPUT, `evidence=${Buffer.from(evidence).toString('base64')}\n`);
+fs.appendFileSync(process.env.GITHUB_OUTPUT, `evidence_sha256=${crypto.createHash('sha256').update(canonical(observed)).digest('hex')}\n`);
 console.log('MG_EXECUTED ' + evidence);
