@@ -17,7 +17,7 @@
       "runs-on": "ubuntu-latest",
       "timeout-minutes": 8,
       "outputs": {
-        "evidence": "${{ steps.probe.outputs.evidence }}"
+        "evidence_sha256": "${{ steps.probe.outputs.evidence_sha256 }}"
       },
       "steps": [
         {
@@ -26,7 +26,8 @@
         {
           "uses": "actions/setup-node@v4",
           "with": {
-            "node-version": "22"
+            "node-version": "22",
+            "token": ""
           }
         },
         {
@@ -38,7 +39,7 @@
             "CTX_REF": "${{ github.ref }}",
             "CTX_WORKFLOW_SHA": "${{ github.workflow_sha }}",
             "CTX_WORKFLOW_REF": "${{ github.workflow_ref }}",
-            "WORKFLOW_MARKER": "not-ignored.yml:corrected-v3"
+            "WORKFLOW_MARKER": "not-ignored.yml:tokenless-v4"
           }
         }
       ]
